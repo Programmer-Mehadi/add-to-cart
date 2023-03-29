@@ -3,7 +3,7 @@ import logo from "../../images/Logo.png";
 const Navbar = () => {
   return (
     <div className="navbar bg-base-100 px-6">
-      <div className="navbar-start">
+      <div className="navbar-start w-fit">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
             <svg
@@ -44,7 +44,7 @@ const Navbar = () => {
                   Contact Us
                 </a>
               </li>
-              <li className="flex items-center justify-between flex-row m-4">
+              <li className="flex items-center justify-between flex-row m-4 ">
                 <a className="px-0 ">
                   <i class="fa-solid fa-magnifying-glass text-[#07484A] text-[27px]"></i>
                 </a>
@@ -62,8 +62,8 @@ const Navbar = () => {
           <img src={logo} alt="" className="w-[144px] h-[36px]" />
         </a>
       </div>
-      <div className="navbar-center hidden lg:flex gap-8">
-        <ul className="menu menu-horizontal px-1">
+      <div className="navbar-end hidden lg:flex gap-8 flex-1">
+        <ul className="menu menu-horizontal px-1 mx-auto">
           <li>
             <a className="font-medium text-[20px] text-[#07484A] ">Home</a>
           </li>
@@ -80,7 +80,7 @@ const Navbar = () => {
             <a className="font-normal text-[20px] text-[#07484A]">Contact Us</a>
           </li>
         </ul>
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-6  w-fit">
           <a className="">
             <i class="fa-solid fa-magnifying-glass text-[#07484A] text-[24px]"></i>
           </a>
