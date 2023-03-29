@@ -3,6 +3,15 @@
   pointer-events: none;
 }
 
+/* banner css start */
+#banner_section {
+  background-image: url(./images/banner.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+/* banner css end */
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
