@@ -5,6 +5,7 @@ const initialData = {
   categoryList: [],
   carts: [],
   selectedCategory: "",
+  product: {},
 };
 
 const reducer = (state = initialData, action) => {
@@ -17,6 +18,10 @@ const reducer = (state = initialData, action) => {
       };
     case "SET_SELECTED_CATEGORY":
       return { ...state, selectedCategory: action.payload };
+    case "SET_PRODUCTS_LIST":
+      return { ...state, products: action.payload };
+    case "SET_PRODUCT_DATA":
+      return { ...state, product: action.payload };
     default:
       return state;
   }
