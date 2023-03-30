@@ -44,24 +44,28 @@
 
 /*  scrollbar */
 /* width */
-#category_list::-webkit-scrollbar {
+#category_list::-webkit-scrollbar,
+#card_container::-webkit-scrollbar {
   width: 8px;
   border-radius: 8px;
 }
 
 /* Track */
+#card_container::-webkit-scrollbar-track,
 #category_list::-webkit-scrollbar-track {
   background: rgb(8, 79, 82, 0.4);
   border-radius: 8px;
 }
 
 /* Handle */
+#card_container::-webkit-scrollbar-thumb,
 #category_list::-webkit-scrollbar-thumb {
   background: rgb(8, 79, 82, 1);
   border-radius: 8px;
 }
 
 /* Handle on hover */
+#card_container::-webkit-scrollbar-thumb:hover,
 #category_list::-webkit-scrollbar-thumb:hover {
   background: rgb(140, 13, 13);
 }

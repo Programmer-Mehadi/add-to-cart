@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "../../images/Logo.png";
+import Cart from "../Home/Cart";
 const Navbar = () => {
   return (
     <div className="navbar bg-base-100 px-6">
@@ -88,7 +89,21 @@ const Navbar = () => {
             <i class="fa-solid fa-magnifying-glass text-[#07484A] text-[24px]"></i>
           </a>
           <a className="">
-            <i class="fa-solid fa-cart-shopping text-[#07484A]  text-[24px]"></i>
+            <ul class="menu menu-horizontal px-1 ">
+              <li tabindex="0" className="relative bg-white">
+                <div className="drawer-content h-fit bg-white cursor-pointer">
+                  <label
+                    htmlFor="my-drawer-4"
+                    className="drawer-button cursor-pointer"
+                  >
+                    <i class="fa-solid fa-cart-shopping text-[#07484A]  text-[24px] cursor-pointer"></i>
+                  </label>
+                </div>
+                <ul class="p-2 bg-base-100 absolute top-16 right-0 w-fit ">
+                  <Cart></Cart>
+                </ul>
+              </li>
+            </ul>
           </a>
           <a className="bg-[#07484A] rounded-[50%] flex justify-center items-center w-[28px] h-[28px]">
             <i class="fa-solid fa-user text-white text-[18px]"></i>

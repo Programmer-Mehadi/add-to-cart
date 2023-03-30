@@ -120,6 +120,25 @@ const ExploreByCategory = () => {
                         <p className="my-3">{description.slice(0, 30)}</p>
                         <h2 className="font-bold text-[24px]">${price}</h2>
                       </div>
+                      <div className="flex">
+                        <button className="flex-1 btn btn-primary rounded-t-none rounded-r-none bg-opacity-80">
+                          <label
+                            htmlFor="my-modal-3"
+                            className="d-block w-full h-full flex justify-center items-center"
+                            onClick={() => {
+                              fetchProductData(id);
+                            }}
+                          >
+                            View product
+                          </label>
+                        </button>
+                        <button
+                          className="w-[50px] bg-lime-600 rounded-r-lg rounded-t-[0px] flex justify-center items-center"
+                          style={{ borderTopRightRadius: 0 }}
+                        >
+                          <i class="fa-solid fa-cart-shopping text-[#ffffff]  text-[20px]"></i>
+                        </button>
+                      </div>
                     </div>
                   </label>
                 );
