@@ -135,6 +135,12 @@ const ExploreByCategory = () => {
                         <button
                           className="w-[50px] bg-lime-600 rounded-r-lg rounded-t-[0px] flex justify-center items-center"
                           style={{ borderTopRightRadius: 0 }}
+                          onClick={() => {
+                            dispatch({
+                              type: "SET_CART_DATA",
+                              payload: { ...product, Qty: 1 },
+                            });
+                          }}
                         >
                           <i class="fa-solid fa-cart-shopping text-[#ffffff]  text-[20px]"></i>
                         </button>
@@ -193,7 +199,17 @@ const ExploreByCategory = () => {
               </h3>
               <p className="py-4">{product?.description}</p>
               <p className="py-4 font-bold text-[28px]">$ {product?.price}</p>
-              <button className="btn btn-success px-16">Add to cart</button>
+              <button
+                className="btn btn-success px-16"
+                onClick={() => {
+                  dispatch({
+                    type: "SET_CART_DATA",
+                    payload: { ...product, Qty: 1 },
+                  });
+                }}
+              >
+                Add to cart
+              </button>
             </div>
           </div>
         </div>

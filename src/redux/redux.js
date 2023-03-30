@@ -3,7 +3,7 @@ const { createStore } = require("redux");
 const initialData = {
   products: [],
   categoryList: [],
-  carts: [],
+  cart: [],
   selectedCategory: "",
   product: {},
 };
@@ -22,6 +22,52 @@ const reducer = (state = initialData, action) => {
       return { ...state, products: action.payload };
     case "SET_PRODUCT_DATA":
       return { ...state, product: action.payload };
+    case "SET_CART_DATA":
+      if (state.cart.find((p) => p.id === action.payload.id)) {
+        return { ...state };
+      }
+      return { ...state, cart: [...state.cart, action.payload] };
+    case "INCREASE_QUANTIRY_DATA":
+      let newData = [];
+      for (let i = 0; i < state.cart.length; i++) {
+        let p = state.cart[i];
+        if (state.cart[i].id === action.payload.productId) {
+          p.Qty += 1;
+          newData.push(p);
+        } else {
+          newData.push(p);
+        }
+      }
+      return { ...state, cart: [...newData] };
+    case "DECREASE_QUANTIRY_DATA":
+      let newDecData = [];
+      for (let i = 0; i < state.cart.length; i++) {
+        let p = state.cart[i];
+        if (state.cart[i].id === action.payload.productId) {
+          p.Qty -= 1;
+          newDecData.push(p);
+        } else {
+          newDecData.push(p);
+        }
+      }
+      return { ...state, cart: [...newDecData] };
+    case "REPLACE_QUANTIRY_DATA":
+      let newRecData = [];
+      for (let i = 0; i < state.cart.length; i++) {
+        let p = state.cart[i];
+        if (state.cart[i].id === action.payload.productId) {
+          p.Qty = action.payload.Qty;
+          newRecData.push(p);
+        } else {
+          newRecData.push(p);
+        }
+      }
+      return { ...state, cart: [...newRecData] };
+    case "DELETE_CART_DATA":
+      let newDelData = state.cart.filter(
+        (p) => p.id !== action.payload.productId
+      );
+      return { ...state, cart: [...newDelData] };
     default:
       return state;
   }
