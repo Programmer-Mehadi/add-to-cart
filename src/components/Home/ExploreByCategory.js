@@ -63,7 +63,7 @@ const ExploreByCategory = () => {
             />
             <i class="fa-solid fa-magnifying-glass absolute top-[18px] left-3 opacity-60"></i>
           </div>
-          <div id="category_list" className="max-h-[500px] overflow-auto">
+          <div id="category_list" className="max-h-[700px] overflow-auto">
             <ul className="flex flex-col gap-1 pr-2">
               {categoryList?.map((category) => {
                 return (
@@ -140,7 +140,7 @@ const ExploreByCategory = () => {
           >
             ✕
           </label>
-          <div className="grid grid-cols-2 gap-10 p-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 p-10">
             <div>
               <img
                 src={showImage}

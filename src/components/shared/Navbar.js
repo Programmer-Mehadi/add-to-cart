@@ -4,8 +4,11 @@ const Navbar = () => {
   return (
     <div className="navbar bg-base-100 px-6">
       <div className="navbar-start w-fit">
-        <div className="dropdown">
-          <label tabIndex={0} className="btn btn-ghost lg:hidden">
+        <div className="dropdown ">
+          <label
+            tabIndex={0}
+            className="cursor-pointer mr-6 lg:hidden flex items-center"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -52,7 +55,7 @@ const Navbar = () => {
                   <i class="fa-solid fa-cart-shopping text-[#07484A]  text-[27px]"></i>
                 </a>
                 <a className="px-0 bg-[#07484A] rounded-[50%] flex justify-between items-center w-[32px] h-[32px]">
-                  <i class="fa-solid fa-user text-white text-[20px]"></i>
+                  <i class="fa-solid fa-user text-white text-[20px] mx-auto"></i>
                 </a>
               </li>
             </ul>
