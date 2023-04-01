@@ -79,10 +79,12 @@ const reducer = (state = initialData, action) => {
       return { ...state, cart: [...newDelData] };
     case "PRODUCT_ADD_TO_BOOKMARK":
       if (state.bookedmarkProduct.find((i) => i == action.payload.id)) {
+        toast.info("Product already add to bookedMark list.");
         return {
           ...state,
         };
       } else {
+        toast.success("Product add to bookedMark list.");
         return {
           ...state,
           bookedmarkProduct: [...state.bookedmarkProduct, action.payload.id],
@@ -92,6 +94,9 @@ const reducer = (state = initialData, action) => {
       const newArray = state.bookedmarkProduct.filter(
         (id) => id !== action.payload.id
       );
+      if (newArray.length !== state.bookedmarkProduct.length) {
+        toast.error("Remove Product from bookedMark list.");
+      }
       return {
         ...state,
         bookedmarkProduct: [...newArray],

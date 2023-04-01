@@ -70,7 +70,7 @@ const Cart = () => {
                                 <p className="">
                                   {" "}
                                   <input
-                                    type="text"
+                                    type="number"
                                     value={Qty}
                                     onChange={(e) => {
                                       let Qty;
