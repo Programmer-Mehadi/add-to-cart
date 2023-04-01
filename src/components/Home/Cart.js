@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const Cart = () => {
   const cartProduct = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-  console.log(cartProduct);
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  useEffect(() => {
+    setTotalPrice(() =>
+      cartProduct.reduce((total, p) => total + p.price * p.Qty, 0)
+    );
+  }, [cartProduct]);
   return (
     <div
       id="card_container"
@@ -18,13 +25,13 @@ const Cart = () => {
               <table className="table table-zebra w-full">
                 {/* head */}
                 <thead className="">
-                  <tr className="">
-                    <th></th>
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Action</th>
+                  <tr>
+                    <th className="bg-sky-600 text-white "></th>
+                    <th className="bg-sky-600 text-white">Image</th>
+                    <th className="bg-sky-600 text-white ">Name</th>
+                    <th className="bg-sky-600 text-white ">Price</th>
+                    <th className="bg-sky-600 text-white">Quantity</th>
+                    <th className="bg-sky-600 text-white ">Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -35,7 +42,7 @@ const Cart = () => {
                           product;
                         return (
                           <tr>
-                            <td>{index + 1}</td>
+                            <td className="border-l">{index + 1}</td>
                             <td>
                               <img
                                 src={thumbnail}
@@ -72,7 +79,14 @@ const Cart = () => {
                                         parseInt(e.target.value) < 1
                                       ) {
                                         Qty = 1;
-                                      } else if (e.target.value === stock - 1) {
+                                      } else if (
+                                        parseInt(e.target.value) ==
+                                        stock - 1
+                                      ) {
+                                        Qty = stock;
+                                      } else if (
+                                        parseInt(e.target.value) > stock
+                                      ) {
                                         Qty = stock;
                                       } else {
                                         Qty = e.target.value;
@@ -102,7 +116,7 @@ const Cart = () => {
                                 </button>
                               </div>
                             </td>
-                            <td>
+                            <td className="border-r">
                               <button
                                 className="btn btn-sm bg-red-800"
                                 onClick={() => {
@@ -127,6 +141,20 @@ const Cart = () => {
                     </tr>
                   )}
                 </tbody>
+                <tfoot>
+                  <tr className="text-slate-800">
+                    <td className="bg-sky-300"></td>
+                    <td className="bg-sky-300"></td>
+                    <td className="bg-sky-300 text-right text-[16px]">
+                      Total Price:{" "}
+                    </td>
+                    <td className="font-semibold text-[16px] bg-sky-300">
+                      ${totalPrice}
+                    </td>
+                    <td className="bg-sky-300"></td>
+                    <td className="bg-sky-300"></td>
+                  </tr>
+                </tfoot>
               </table>
             </div>
           </div>

@@ -8,11 +8,10 @@ const ExploreByCategory = () => {
   const selectCategory = useSelector((state) => state.selectedCategory);
   const products = useSelector((state) => state.products);
   const product = useSelector((state) => state.product);
+  const bookedmarkProduct = useSelector((state) => state.bookedmarkProduct);
 
   const [reFetch, setReFetch] = useState(false);
   const [showImage, setShowImage] = useState(product?.thumbnail);
-
-  console.log(showImage);
 
   useEffect(() => {
     if (!categoryList.length) {
@@ -96,57 +95,80 @@ const ExploreByCategory = () => {
         {/* product list */}
         <div className="flex-1">
           {reFetch ? (
-            <h2>Loading...</h2>
+            <h2 className="text-center text-[40px] font-bold text-sky-600">
+              Loading...
+            </h2>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
               {products.map((product) => {
                 const { id, title, price, thumbnail, description } = product;
                 return (
-                  <label
-                    htmlFor="my-modal-3"
-                    className="d-block"
-                    onClick={() => {
-                      fetchProductData(id);
-                    }}
-                  >
-                    <div className="card rounded-[16px] shadow-sm text-center border border-slate-200 hover:shadow-md cursor-pointer">
-                      <img
-                        src={thumbnail}
-                        alt=""
-                        className="w-full h-[300px]   mb-[20px] mx-auto rounded-t-[16px] border-b"
-                      />
-                      <div className="px-[30px] py-[10px] ">
-                        <h2 className="font-bold text-[24px]">{title}</h2>
-                        <p className="my-3">{description.slice(0, 30)}</p>
+                  <div className="card rounded-[16px] shadow-sm  border border-slate-200 hover:shadow-md flex flex-col justify-between">
+                    <img
+                      src={thumbnail}
+                      alt=""
+                      className="w-full h-[300px]   mb-[20px] mx-auto rounded-t-[16px] border-b"
+                    />
+                    <div className="px-[30px] py-[10px] ">
+                      <h2 className="font-bold text-[18px]">
+                        {title.length > 25 ? title.slice(0, 25) + "..." : title}
+                      </h2>
+                      <p className="my-3 text-[16px]">
+                        {description.length > 30
+                          ? description.slice(0, 30) + "..."
+                          : description}
+                      </p>
+                      <div className="flex justify-between gap-8 items-center">
                         <h2 className="font-bold text-[24px]">${price}</h2>
-                      </div>
-                      <div className="flex">
-                        <button className="flex-1 btn btn-primary rounded-t-none rounded-r-none bg-opacity-80">
-                          <label
-                            htmlFor="my-modal-3"
-                            className="d-block w-full h-full flex justify-center items-center"
-                            onClick={() => {
-                              fetchProductData(id);
-                            }}
-                          >
-                            View product
-                          </label>
-                        </button>
-                        <button
-                          className="w-[50px] bg-lime-600 rounded-r-lg rounded-t-[0px] flex justify-center items-center"
-                          style={{ borderTopRightRadius: 0 }}
-                          onClick={() => {
-                            dispatch({
-                              type: "SET_CART_DATA",
-                              payload: { ...product, Qty: 1 },
-                            });
-                          }}
-                        >
-                          <i class="fa-solid fa-cart-shopping text-[#ffffff]  text-[20px]"></i>
-                        </button>
+                        {bookedmarkProduct.includes(id) ? (
+                          <i
+                            className="fa-solid fa-bookmark text-red-700 cursor-pointer"
+                            onClick={() =>
+                              dispatch({
+                                type: "PRODUCT_REMOVE_TO_BOOKMARK",
+                                payload: { id: id },
+                              })
+                            }
+                          ></i>
+                        ) : (
+                          <i
+                            className="fa-regular fa-bookmark cursor-pointer"
+                            onClick={() =>
+                              dispatch({
+                                type: "PRODUCT_ADD_TO_BOOKMARK",
+                                payload: { id: id },
+                              })
+                            }
+                          ></i>
+                        )}
                       </div>
                     </div>
-                  </label>
+                    <div className="flex mt-6">
+                      <button className="flex-1 btn btn-primary rounded-t-none rounded-r-none bg-opacity-80">
+                        <label
+                          htmlFor="my-modal-3"
+                          className="d-block w-full h-full flex justify-center items-center"
+                          onClick={() => {
+                            fetchProductData(id);
+                          }}
+                        >
+                          View product
+                        </label>
+                      </button>
+                      <button
+                        className="w-[50px] bg-lime-600 rounded-r-lg rounded-t-[0px] flex justify-center items-center"
+                        style={{ borderTopRightRadius: 0 }}
+                        onClick={() => {
+                          dispatch({
+                            type: "SET_CART_DATA",
+                            payload: { ...product, Qty: 1 },
+                          });
+                        }}
+                      >
+                        <i class="fa-solid fa-cart-shopping text-[#ffffff]  text-[20px]"></i>
+                      </button>
+                    </div>
+                  </div>
                 );
               })}
             </div>
